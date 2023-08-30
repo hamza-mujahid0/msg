@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Message</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body,
+        html {
+            background-color: #6665ee;
+            display: grid;
+            height: 100vh;
+            place-items: center;
+
+
+        }
+
+        h4 {
+            font-size: 1.5rem;
+            margin-bottom: .5rem;
+            font-size: inherit;
+            font-weight: 500;
+            line-height: 1.2;
+            text-transform: capitalize;
+        }
+
+        .container {
+            width: 45vw;
+            height: auto;
+            background-color: #fff;
+            padding: 2vh 5vw;
+            border-radius: 1.2vw;
+            box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .box {
+            width: 100%;
+            max-width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            border: 1.5px solid #6665ee
+        }
+
+        form input[type="text"] {
+            height: 3rem;
+            padding: 0.5rem;
+            width: 100%;
+            margin: 0.5rem 0;
+            outline: none;
+            border: 1.5px solid #6665ee;
+            border-radius: 0.2rem;
+        }
+
+        .btn {
+            font-size: 1rem;
+            padding: 0.5rem 1.5rem;
+            background-color: #6665ee;
+            color: white;
+            font-weight: 500;
+            cursor: pointer;
+            border: none;
+            border-radius: 0.2rem;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #5554d8;
+        }
+
+        .feedback {
+            display: none;
+            background-color: #ffd4cc;
+            font-size: 1.2rem;
+            width: 100%;
+            padding: 10px 0;
+        }
+
+        .message-content {
+            color: #4b830a;
+        }
+
+        .deliver {
+            display: none;
+        }
+
+        .show {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h3>A Message You Would Like To Pass</h3>
+        <form id="msg-form">
+            <input type="text" id="msg" class="box" maxlength="90">
+            <input type="submit" id="submit-btn" class="btn">
+        </form>
+        <h3 class="feedback">Please enter a value to pass.</h3>
+        <h4 class="deliver">Your message was delivered!</h4>
+        <h4 class="message-content">Hello World!</h4>
+    </div>
+    <script>
+        (function () {
+            const form = document.querySelector('#msg-form');
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+                const message = document.querySelector('#msg');
+                const feedback = document.querySelector('.feedback');
+                const messageContent = document.querySelector('.message-content');
+                if (message.value === '') {
+                    feedback.classList.add('show');
+                    setTimeout(() => {
+                        feedback.classList.remove('show');
+                    }, 3000);
+                } else {
+                    messageContent.textContent = message.value;
+                    message.value = '';
+                    const deliver=document.querySelector('.deliver');
+                    deliver.classList.add('show');
+                    setTimeout(() => {
+                        deliver.classList.remove('show');
+                    }, 2000);
+                }
+            })
+        })()
+
+
+    </script>
+</body>
+
+</html>
